@@ -5,21 +5,21 @@ import (
 	"sync"
 )
 
-type MiniDb struct {
+type MiniDB struct {
 	mu   sync.RWMutex
 	data map[string]string
 	rev  map[string]string
 }
 
-func New() *MiniDb {
-	return &MiniDb{
+func New() *MiniDB {
+	return &MiniDB{
 		mu:   sync.RWMutex{},
 		data: make(map[string]string),
 		rev:  make(map[string]string),
 	}
 }
 
-func (db *MiniDb) Get(key string) (val string, err error) {
+func (db *MiniDB) Get(key string) (val string, err error) {
 	db.mu.RLock()
 	if v, ok := db.data[key]; ok {
 		val = v
@@ -31,7 +31,7 @@ func (db *MiniDb) Get(key string) (val string, err error) {
 	return val, err
 }
 
-func (db *MiniDb) Resolve(val string) (key string, err error) {
+func (db *MiniDB) Resolve(val string) (key string, err error) {
 	db.mu.RLock()
 	if k, ok := db.rev[val]; ok {
 		key = k
@@ -43,7 +43,7 @@ func (db *MiniDb) Resolve(val string) (key string, err error) {
 	return key, err
 }
 
-func (db *MiniDb) Set(key string, val string) (err error) {
+func (db *MiniDB) Set(key string, val string) (err error) {
 	db.mu.Lock()
 	if _, ok := db.data[key]; !ok {
 		if _, ok := db.rev[val]; !ok {

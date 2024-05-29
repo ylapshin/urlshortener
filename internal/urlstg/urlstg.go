@@ -8,7 +8,7 @@ import (
 const KeyLen = 6
 
 type URLStg struct {
-	data *minidb.MiniDb
+	data *minidb.MiniDB
 }
 
 func New() *URLStg {
