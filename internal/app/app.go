@@ -13,7 +13,7 @@ type App struct {
 	data *urlstg.UrlStg
 }
 
-func fullUrl(req *http.Request, id string) string {
+func fullURL(req *http.Request, id string) string {
 	proto := "https://"
 	if req.TLS == nil {
 		proto = "http://"
@@ -56,7 +56,7 @@ func (app *App) rootMethodPost(res http.ResponseWriter, req *http.Request) {
 
 	res.Header().Set("content-type", "text/plain")
 	res.WriteHeader(http.StatusCreated)
-	_, err = res.Write([]byte(fullUrl(req, id)))
+	_, err = res.Write([]byte(fullURL(req, id)))
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusBadRequest)
 	}
