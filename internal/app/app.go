@@ -52,7 +52,7 @@ func (app *App) rootMethodPost(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	id, err := app.data.Reg(string(body))
+	id, _ := app.data.Reg(string(body))
 
 	res.Header().Set("content-type", "text/plain")
 	res.WriteHeader(http.StatusCreated)
