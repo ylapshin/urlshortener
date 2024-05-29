@@ -40,7 +40,7 @@ func (app *App) rootMethodGet(res http.ResponseWriter, req *http.Request) {
 }
 
 func (app *App) rootMethodPost(res http.ResponseWriter, req *http.Request) {
-	contentType := req.Header.Get("Content-Type")
+	contentType := req.Header.Get("content-type")
 	if contentType != "text/plain" {
 		http.Error(res, "invalid content type", http.StatusBadRequest)
 		return
@@ -54,7 +54,7 @@ func (app *App) rootMethodPost(res http.ResponseWriter, req *http.Request) {
 
 	id, err := app.data.Reg(string(body))
 
-	res.Header().Set("Content-Type", "text/plain")
+	res.Header().Set("content-type", "text/plain")
 	res.WriteHeader(http.StatusCreated)
 	_, err = res.Write([]byte(fullUrl(req, id)))
 	if err != nil {
