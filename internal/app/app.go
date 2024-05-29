@@ -10,7 +10,7 @@ import (
 const respPath = "/"
 
 type App struct {
-	data *urlstg.UrlStg
+	data *urlstg.URLStg
 }
 
 func fullURL(req *http.Request, id string) string {

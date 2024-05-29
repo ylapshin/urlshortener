@@ -7,17 +7,17 @@ import (
 
 const KeyLen = 6
 
-type UrlStg struct {
+type URLStg struct {
 	data *minidb.MiniDb
 }
 
-func New() *UrlStg {
-	return &UrlStg{
+func New() *URLStg {
+	return &URLStg{
 		data: minidb.New(),
 	}
 }
 
-func (stg *UrlStg) Reg(url string) (id string, err error) {
+func (stg *URLStg) Reg(url string) (id string, err error) {
 	// если url уже существует - отдаем его идентификатор
 	if id, err = stg.data.Resolve(url); err == nil {
 		return id, nil
@@ -35,6 +35,6 @@ func (stg *UrlStg) Reg(url string) (id string, err error) {
 	return id, err
 }
 
-func (stg *UrlStg) Get(id string) (url string, err error) {
+func (stg *URLStg) Get(id string) (url string, err error) {
 	return stg.data.Get(id)
 }
