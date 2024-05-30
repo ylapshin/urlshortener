@@ -42,7 +42,7 @@ func (app *App) rootMethodGet(res http.ResponseWriter, req *http.Request) {
 
 func (app *App) rootMethodPost(res http.ResponseWriter, req *http.Request) {
 	contentType := req.Header.Get("Content-Type")
-	if strings.Contains(contentType, "text/plain") {
+	if !strings.Contains(contentType, "text/plain") {
 		http.Error(res, fmt.Sprintf("%s - invalid content type", contentType), http.StatusBadRequest)
 		return
 	}
