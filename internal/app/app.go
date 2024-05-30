@@ -5,6 +5,7 @@ import (
 	"github.com/ylapshin/urlshortener/internal/urlstg"
 	"io"
 	"net/http"
+	"strings"
 )
 
 const respPath = "/"
@@ -41,7 +42,7 @@ func (app *App) rootMethodGet(res http.ResponseWriter, req *http.Request) {
 
 func (app *App) rootMethodPost(res http.ResponseWriter, req *http.Request) {
 	contentType := req.Header.Get("Content-Type")
-	if contentType != "text/plain" {
+	if strings.Contains(contentType, "text/plain") {
 		http.Error(res, fmt.Sprintf("%s - invalid content type", contentType), http.StatusBadRequest)
 		return
 	}
